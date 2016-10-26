@@ -15,55 +15,59 @@
 </head>
 <body>
 <style>
-.header {
-	background: black;
-	color: white;
-}
+ /* .header { */
+ /* background: black; */
+ /* color: white; */
+ /* } */
 
 th {
 	padding: 1em;
 }
 </style>
-<table>
-	<tr class="header">
-		<th>Id</th>
-		<th>Descrição</th>
-		<th>Finalizado</th>
-		<th>Data de Finalização</th>
-		<th></th>
-		<th></th>
-	</tr>
-	<c:forEach items="${ tarefas }" var="tarefa">
-		<tr style="background:${ tarefa.id % 2 == 0 ? 'yellow' : 'red' }">
-			<td>${ tarefa.id }</td>
-			<td>${ tarefa.descricao }</td>
-			<c:if test="${ tarefa.finalizado eq false }">
-				<td>Não finalizada</td>
-			</c:if>
-			<c:if test="${ tarefa.finalizado eq true }">
-				<td>Finalizado</td>
-			</c:if>
-			<td>
-				<fmt:formatDate 
-					value="${ tarefa.dataFinalizacao.time }"
-					pattern="dd/MM/yyyy"/>
-			</td>
-			<td style="background: white">
-				<a class="btn btn-warning"
-					href="mostraTarefa?id=${ tarefa.id }"
-					role="button">
-					Alterar
-				</a>
-			</td>
-			<td style="background: white">
-				<a class="btn btn-danger" 
-					href="removeTarefa?id=${ tarefa.id }"
-					role="button">
-					Remover
-				</a>
-			</td>
-		</tr>
-	</c:forEach>
+<table class="table table-hover">
+  <thead class="thead-inverse">
+    <tr>
+        <th>Id</th>
+        <th>Descrição</th>
+        <th>Finalizado</th>
+        <th>Data de Finalização</th>
+        <th></th>
+        <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <c:forEach items="${ tarefas }" var="tarefa">
+			<tr class="table-success">    		
+	        <td>${ tarefa.id }</td>
+	        <td>${ tarefa.descricao }</td>
+	        <c:if test="${ tarefa.finalizado eq false }">
+	            <td>Não finalizada</td>
+	        </c:if>
+	        <c:if test="${ tarefa.finalizado eq true }">
+	            <td>Finalizado</td>
+	        </c:if>
+	        <td>
+	            <fmt:formatDate 
+	            value="${ tarefa.dataFinalizacao.time }"
+	            pattern="dd/MM/yyyy"/>
+	        </td>
+	        <td>
+	            <a class="btn btn-warning"
+	            href="mostraTarefa?id=${ tarefa.id }"
+	            role="button">
+	            Alterar
+	            </a>
+	        </td>
+	        <td>
+	            <a class="btn btn-danger" 
+	            href="removeTarefa?id=${ tarefa.id }"
+	            role="button">
+	            Remover
+	            </a>
+	        </td>
+        </tr>
+    </c:forEach>
+  </tbody>
 </table>
 
 
